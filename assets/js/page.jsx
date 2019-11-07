@@ -5,7 +5,7 @@ import { Navbar, Nav, Col } from 'react-bootstrap';
 import { Provider, connect } from 'react-redux';
 
 import Login from './login';
-
+import SheetsNew from './sheets/new';
 import store from './store';
 
 export default function init_page(root) {
@@ -33,17 +33,25 @@ function Page(props) {
                 Users
               </NavLink>
             </Nav.Item>
+	    <Nav.Item>
+    	      <NavLink to="/sheets/new" exact activeClassName="active" className="nav-link">
+                New Timesheet
+    	      </NavLink>
+  	    </Nav.Item>
           </Nav>
         </Col>
         <Col md="4">
           <Session />
         </Col>
       </Navbar>
-
+      <Switch>
+        <Route exact path="/sheets/new">
+          <SheetsNew />
+        </Route>
         <Route exact path="/login">
           <Login />
         </Route>
-      
+      </Switch>
     </Router>
   );
 }

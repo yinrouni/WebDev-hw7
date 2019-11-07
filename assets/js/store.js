@@ -40,7 +40,7 @@ function login(st0 = {email: "", password: "", errors: null}, action) {
 
 function forms(st0, action) {
   let reducer = combineReducers({
-    new_photo,
+   
     login,
   });
   return reducer(st0, action);
@@ -83,7 +83,6 @@ function root_reducer(st0, action) {
   let reducer = combineReducers({
     forms,
     users,
-    photos,
     session,
   });
   return deepFreeze(reducer(st0, action));

@@ -6,6 +6,7 @@ defmodule Timesheet2Web.SessionController do
   alias Timesheet2.Users
 
   def create(conn, %{"email" => email, "password" => password}) do
+    IO.inspect("seesion create")
     user = Users.authenticate(email, password)
     if user do
       token = Phoenix.Token.sign(conn, "session", user.id)

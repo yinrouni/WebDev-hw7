@@ -21,7 +21,7 @@ defmodule Timesheet2Web.Router do
 
     get "/", PageController, :index
     resources "/sheets",SheetController,
-       only: [:new, :create, :index, :show, :update, :edit] 
+       except: [:new, :edit] 
     resources "/users", UserController,
        only: [:new, :create, :show, :index]
     resources "/tasks", TaskController,
