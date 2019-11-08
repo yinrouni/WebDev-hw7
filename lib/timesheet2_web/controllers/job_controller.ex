@@ -21,7 +21,7 @@ defmodule Timesheet2Web.JobController do
   end
 
   def show(conn, %{"id" => id}) do
-    job = Jobs.get_job!(id)
+    job = Jobs.list_jobs()
     render(conn, "show.json", job: job)
   end
 

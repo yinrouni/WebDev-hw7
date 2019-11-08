@@ -17,10 +17,12 @@ import deepFreeze from 'deep-freeze-strict';
  *     1 => {id: 1, data: "...", desc: "...", tags: [...]},
  *     ...
  *   ),
+ *   jobs: [{...},{...}, ...]
+ *   )
  * }
  */
 
-function new_photo(st0 = {file: null, desc: "", errors: null}, action) {
+function new_sheet(st0 = {date: null, desc: "", errors: null}, action) {
   switch (action.type) {
     case 'CHANGE_NEW_PHOTO':
       return Object.assign({}, st0, action.data);
@@ -40,7 +42,7 @@ function login(st0 = {email: "", password: "", errors: null}, action) {
 
 function forms(st0, action) {
   let reducer = combineReducers({
-   
+    new_sheet, 
     login,
   });
   return reducer(st0, action);
@@ -56,6 +58,19 @@ function photos(st0 = new Map(), action) {
       let st1 = new Map(st0);
       for (let photo of action.data) {
         st1.set(photo.id, photo);
+      }
+      return st1;
+    default:
+      return st0;
+  }
+}
+
+function jobs(st0 = new Map(), action) {
+  switch (action.type) {
+    case 'ADD_JOBS':
+      let st1 = new Map(st0);
+      for (let job of action.data) {
+        st1.set(job.id,job);
       }
       return st1;
     default:
@@ -83,6 +98,7 @@ function root_reducer(st0, action) {
   let reducer = combineReducers({
     forms,
     users,
+    jobs,
     session,
   });
   return deepFreeze(reducer(st0, action));

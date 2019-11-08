@@ -81,6 +81,16 @@ export function list_photos() {
       });
     });
 }
+export function list_jobs(){
+  get('/jobs')
+    .then((resp)=>{
+      console.log("list_jobs", resp);
+      store.dispatch({
+        type: 'ADD_JOBS', 
+	data: resp.data,
+      });
+    });
+}
 
 export function submit_new_photo(form) {
   let state = store.getState();

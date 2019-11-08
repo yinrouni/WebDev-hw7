@@ -28,6 +28,7 @@ defmodule Timesheet2Web.Router do
 	only: [:new, :create]
     resources "/sessions", SessionController, 
       only: [:create], singleton: true
+    resources "/jobs", JobController
   end
 
 
