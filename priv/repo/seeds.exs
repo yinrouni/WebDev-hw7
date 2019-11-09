@@ -14,6 +14,12 @@ alias Timesheet2.Users.User
 alias Timesheet2.Jobs.Job
 pwhash = Argon2.hash_pwd_salt("password123456")
 
+Repo.insert!(%User{name: "manager1", email: "manager1@test.com", is_manager: true, password_hash: pwhash})
+Repo.insert!(%User{name: "worker1", email: "worker1@test.com", is_manager: false, manager_email: "manager1@test.com", password_hash: pwhash})
+
+Repo.insert!(%User{name: "manager2", email: "manager2@test.com", is_manager: true, password_hash: pwhash})
+Repo.insert!(%User{name: "worker2", email: "worker2@test.com", is_manager: false, manager_email: "manager2@test.com", password_hash: pwhash})
+
 Repo.insert!(%User{name: "manager3", email: "manager3@test.com", is_manager: true, password_hash: pwhash})
 Repo.insert!(%User{name: "worker3", email: "worker3@test.com", is_manager: false, manager_email: "manager3@test.com", password_hash: pwhash})
 
