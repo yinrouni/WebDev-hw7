@@ -77,7 +77,7 @@ let Session = connect(({session}) => ({session}))(({session, dispatch}) => {
           <p className="text-light py-2">User: {session.user_name}</p>
         </Nav.Item>
         <Nav.Item>
-          <a className="nav-link" href="#" onClick={logout}>Logout</a>
+          <a className="nav-link" href="page.jsx" onClick={logout}>Logout</a>
         </Nav.Item>
       </Nav>
     );

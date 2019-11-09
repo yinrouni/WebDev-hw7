@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import { submit_new_sheet } from '../ajax';
+import store from '../store'
 import TasksNew from '../tasks/new';
 import {list_jobs} from '../ajax';
 
@@ -57,7 +58,6 @@ class SheetsNew extends React.Component {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
- this.changed({ worker_id: store.getState().session.user_id }) 
 return (
     <div>
       <h1>New TimeSheet</h1>

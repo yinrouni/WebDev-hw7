@@ -61,7 +61,7 @@ export function get(path) {
   }).then((resp) => resp.json());
 }
 
-export function get_sheet(id) {
+export function get_photo(id) {
   get('/sheets/'+id)
     .then((resp) => {
       store.dispatch({
