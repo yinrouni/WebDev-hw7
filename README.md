@@ -30,11 +30,11 @@ id email name is_manager manager_email password
 #### Jobs
 Job_Code	Budget (Hours)	Name manager_id	Description
 
-VAOR-01	20	Cyborg Arm 1 desc1
+VAOR-01	20	Cyborg Arm 3 desc1
 
-VAOR-02	45	Sobriety Pill	 2 desc2
+VAOR-02	45	Sobriety Pill	 5 desc2
 
-VAOR-03	12	Rat Cancer	 2 desc3
+VAOR-03	12	Rat Cancer	 5 desc3
 
 ## Learn more
 
