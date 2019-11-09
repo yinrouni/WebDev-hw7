@@ -8,16 +8,20 @@ export default function TasksNew(props) {
   var job_codes = jobs.map(function(n){
 	  return (<option>{n.job_code}</option>);
   })
-  console.log(job_codes);
+  
   return (
     <div>
       <h4>Task{props.index}</h4>
+	  <div class="row">
+       <div class="col-3">
 	<Form.Group controlId="job_code">
         <Form.Label>Job</Form.Label>
         <Form.Control as="select">
 	  {job_codes}
 	</Form.Control>
 	 </Form.Group>
+	 </div>
+	  <div class="col-3">
 	 <Form.Group controlId="hours">
         <Form.Label>Hours</Form.Label>
         <Form.Control as="select">
@@ -31,11 +35,14 @@ export default function TasksNew(props) {
           <option>8</option>
         </Form.Control>
 	</Form.Group>
+	  </div>
+	  <div class="col-6">
       <Form.Group controlId="notes">
         <Form.Label>Notes</Form.Label>
-        <Form.Control as="textarea"/>
+        <Form.Control as="textarea" row="0"/>
       </Form.Group>
-
+	</div>
+	  </div>
     </div>
   );
 }

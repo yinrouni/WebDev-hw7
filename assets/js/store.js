@@ -4,7 +4,7 @@ import deepFreeze from 'deep-freeze-strict';
 /* Structure of store data:
  * {
  *   forms: {
- *     new_photo: {...},
+ *     new_sheet: {...},
  *     edit_photo: {...},
  *     new_user: {...},
  *     edit_user: {...},
@@ -17,14 +17,22 @@ import deepFreeze from 'deep-freeze-strict';
  *     1 => {id: 1, data: "...", desc: "...", tags: [...]},
  *     ...
  *   ),
+ *   sheets: Map.new(
+ *     1=>{id: 1, date: "...", approval: "pending"}, 
+ *     ...
+ *   ), 
+ *   tasks: Map.new(
+ *	1=>{id: 1, hours: 0, notes: "", job: null, sheet_id: null},
+ *	...
+ *   ),
  *   jobs: [{...},{...}, ...]
  *   )
  * }
  */
 
-function new_sheet(st0 = {date: null, desc: "", errors: null}, action) {
+function new_sheet(st0 = {date: null, approval:"pending", errors: null, id: null, worker_id: null}, action) {
   switch (action.type) {
-    case 'CHANGE_NEW_PHOTO':
+    case 'CHANGE_NEW_SHEET':
       return Object.assign({}, st0, action.data);
     default:
       return st0;
@@ -52,12 +60,12 @@ function users(st0 = new Map(), action) {
   return st0;
 }
 
-function photos(st0 = new Map(), action) {
+function sheets(st0 = new Map(), action) {
   switch (action.type) {
-    case 'ADD_PHOTOS':
+    case 'ADD_SHEETS':
       let st1 = new Map(st0);
-      for (let photo of action.data) {
-        st1.set(photo.id, photo);
+      for (let sheet of action.data) {
+        st1.set(sheet.id, sheet);
       }
       return st1;
     default:

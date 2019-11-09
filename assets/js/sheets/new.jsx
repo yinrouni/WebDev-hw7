@@ -10,7 +10,6 @@ import {list_jobs} from '../ajax';
 function state2props(state) {
   return {form: state.forms.new_sheet, jobs: state.jobs}
 }
-
 class SheetsNew extends React.Component {
   constructor (props) {
     super(props);
@@ -47,9 +46,9 @@ class SheetsNew extends React.Component {
   }
 
   render() {
-    let {date, desc, jobs, errors, dispatch} = this.props;
+    let {date, jobs, id, errors, dispatch} = this.props;
     list_jobs();
-    console.log(this.props.jobs);
+    console.log(this.props.id);
     let error_msg = null;
     if (errors) {
       error_msg = <Alert variant="danger">{ errors }</Alert>;
@@ -58,7 +57,8 @@ class SheetsNew extends React.Component {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
-  return (
+ this.changed({ worker_id: store.getState().session.user_id }) 
+return (
     <div>
       <h1>New TimeSheet</h1>
       <Form.Group controlId="date">
@@ -66,12 +66,12 @@ class SheetsNew extends React.Component {
         <Form.Control type="date" 
 	  		onChange={(ev) => this.changed({date: ev.target.value}) }/>
       </Form.Group>
-	  {this.render_tasks()}
+
+      {this.render_tasks()}
+
       <Form.Group controlId="new_task">
         <Button variant="primary" onClick={() => this.add_new_task()}>+ New Task</Button>
-	  
       </Form.Group>
-	 <Button onClick={()=> list_jobs()}> task</Button>
 
       <Form.Group controlId="submit">
         <Button variant="primary" onClick={() => submit_new_sheet(this)}>Upload Timesheet</Button>

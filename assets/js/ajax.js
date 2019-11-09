@@ -61,15 +61,53 @@ export function get(path) {
   }).then((resp) => resp.json());
 }
 
-export function get_photo(id) {
-  get('/photos/'+id)
+export function get_sheet(id) {
+  get('/sheets/'+id)
     .then((resp) => {
       store.dispatch({
-        type: 'ADD_PHOTOS',
+        type: 'ADD_SHEETS',
         data: [resp.data],
       });
     });
 }
+
+
+export function submit_new_sheet(form) {
+  let state = store.getState();
+  console.log("state", state);
+  let data = state.forms.new_sheet;
+
+  if (data.date == null) {
+    return;
+  }
+
+    post('/sheets', {
+      sheet: {
+        date: data.date,
+        status: data.approval,
+        worker_id: 1,
+      }
+    }, "newSheet").then((resp) => {
+      console.log(resp);
+      if (resp.data) {
+        store.dispatch({
+          type: 'ADD_SHEETS',
+          data: [resp.data],
+        });
+        form.redirect('/sheets/' + resp.data.id);
+      }
+      else {
+        store.dispatch({
+          type: 'CHANGE_NEW_PHOTO',
+          data: {errors: JSON.stringify(resp.errors)},
+        });
+      }
+    });
+ 
+
+  reader.readAsDataURL(data.file);
+}
+
 
 export function list_photos() {
   get('/photos')

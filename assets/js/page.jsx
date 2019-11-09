@@ -48,6 +48,11 @@ function Page(props) {
         <Route exact path="/sheets/new">
           <SheetsNew />
         </Route>
+
+	<Route exact path="/sheets/:id" render={
+          (props) =>
+            <SheetsShow id={props.match.params.id} />
+        } />
         <Route exact path="/login">
           <Login />
         </Route>
